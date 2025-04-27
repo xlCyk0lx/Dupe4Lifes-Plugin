@@ -1,11 +1,10 @@
 plugins {
     id 'java'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'  // Add this if not present
 }
 
 group = 'org.dupe4lifes'
-version = '1.0'
+version = '1.0-SNAPSHOT'
 description = 'A plugin to handle purchases from the Dupe4Lifes website'
 
 repositories {
@@ -23,28 +22,13 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21) // Change from 17 to 21
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
-
-// Override the default JAR name
-jar {
-    archiveBaseName = 'Dupe4Lifes-STORE'
-    archiveVersion = '1.00'
-}
-
-// If using shadow plugin
-shadowJar {
-    archiveBaseName = 'Dupe4Lifes-STORE'
-    archiveVersion = '1.00'
-}
-
-// Make the shadowJar task the default for build
-build.dependsOn shadowJar
 
 processResources {
     def props = [
@@ -59,4 +43,10 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+// Configure the JAR task
+jar {
+    archiveBaseName.set('Dupe4Lifes-STORE')
+    archiveVersion.set('1.00')
 }

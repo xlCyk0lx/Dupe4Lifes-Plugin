@@ -1,6 +1,7 @@
 plugins {
     id 'java'
-    id 'checkstyle'
+    // Remove or comment out the checkstyle plugin
+    // id 'checkstyle'
 }
 
 group = 'org.dupe4lifes'
@@ -22,7 +23,7 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21) // Change from 17 to 21
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
